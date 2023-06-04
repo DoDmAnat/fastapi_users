@@ -1,12 +1,12 @@
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy.ext.declarative import declarative_base
+
 from sqlalchemy.orm import Mapped, mapped_column
+from database import Base
 
-Base = declarative_base()
 
-
-class User(Base):
-    __tablename__ = "user"
+class User(SQLAlchemyBaseUserTable[int], Base):
+    __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
@@ -24,12 +24,3 @@ class User(Base):
     is_verified: Mapped[bool] = mapped_column(
         Boolean, default=False, nullable=False
     )
-
-
-class Task(Base):
-    __tablename__ = "task"
-
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer)
-    title = Column(String)
-    description = Column(String)
