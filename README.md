@@ -43,7 +43,7 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 
 REDIS_HOST=redis
-REDIS_PORT=5370
+REDIS_PORT=6379
 ```
 
 3. Выполнить команду запуска docker-compose в «фоновом режиме»
